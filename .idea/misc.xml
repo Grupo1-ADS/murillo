@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_people.xml" value="0.1" />
         <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_people_detail.xml" value="0.1" />
         <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_planet.xml" value="0.1796875" />
+        <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/activity_planets.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/item_people.xml" value="0.22561863173216884" />
+        <entry key="..\:/Users/muril/AndroidStudioProjects/StarWarsApp2/app/src/main/res/layout/item_planet.xml" value="0.17119565217391305" />
       </map>
     </option>
   </component>

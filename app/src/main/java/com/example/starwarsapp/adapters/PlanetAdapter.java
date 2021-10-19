@@ -9,14 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.starwarsapp.R;
-
-import com.example.starwarsapp.models.People;
+import com.example.starwarsapp.models.Planet;
 
 import java.util.List;
 
-public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder> {
+public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.ViewHolder> {
 
-    private List<People> peoples;
+    private List<Planet> planets;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private View view;
@@ -30,31 +29,31 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
         }
     }
 
-    public PeopleAdapter(List<People> peoples){
-        this.peoples = peoples;
+    public PlanetAdapter(List<Planet> planets){
+        this.planets = planets;
     }
 
     @NonNull
     @Override
-    public PeopleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlanetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_people, parent, false);
+            .inflate(R.layout.item_planet, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.bind(peopleList.get(position));
-        People people = peoples.get(position);
+        //holder.bind(planets.get(position));
+        Planet planet = planets.get(position);
 
         TextView tv = holder.view.findViewById(R.id.tvNamePlanet);
-        tv.setText(people.getName());
+        tv.setText(planet.getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return peoples.size();
+        return planets.size();
     }
 
 }

@@ -7,6 +7,30 @@
     android:background="@color/black"
     tools:context="com.example.starwarsapp.views.PlanetActivity">
 
+    <Button
+        android:id="@+id/btnStarships"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starships"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVehicles"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <Button
+        android:id="@+id/btnVehicles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vehicles"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSpecies"
+        app:layout_constraintVertical_bias="0.137" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="277dp"
@@ -20,25 +44,49 @@
         app:srcCompat="@drawable/sw_logo" />
 
     <Button
-        android:id="@+id/buttonPeople"
+        android:id="@+id/btnPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:text="Peoples"
+        android:layout_marginTop="80dp"
+        android:text="People"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/buttonPlanets"
+        android:id="@+id/btnSpecies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Species"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFilms"
+        app:layout_constraintVertical_bias="0.081" />
+
+    <Button
+        android:id="@+id/btnFilms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Films"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlanets"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <Button
+        android:id="@+id/btnPlanets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Planets"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPeople"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPeople"
+        app:layout_constraintVertical_bias="0.059" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

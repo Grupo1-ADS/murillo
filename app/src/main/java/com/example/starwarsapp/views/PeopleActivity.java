@@ -15,9 +15,6 @@ import com.example.starwarsapp.R;
 import com.example.starwarsapp.adapters.PeopleAdapter;
 import com.example.starwarsapp.presenters.PeoplePresenter;
 import com.example.starwarsapp.presenters.PeoplePresenterContract;
-import com.google.gson.JsonObject;
-
-import java.util.List;
 
 public class PeopleActivity extends AppCompatActivity implements PeoplePresenterContract.view {
 
@@ -34,8 +31,8 @@ public class PeopleActivity extends AppCompatActivity implements PeoplePresenter
         presenter = new PeoplePresenter(this);
 
         recycler = findViewById(R.id.recyclerPeople);
-        EditText editText = findViewById(R.id.editTextPeople);
-        Button buttonSearch = findViewById(R.id.buttonSearch);
+        EditText editText = findViewById(R.id.etPlanetsSearch);
+        Button buttonSearch = findViewById(R.id.btnPlanetsSearch);
 
         onPrepareRecyclerView(adapter);
         presenter.getPeople();

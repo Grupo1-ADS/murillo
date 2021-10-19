@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 public interface PlanetService {
 
     @GET("planets")
-    Call<Result> getPlanet(@Query("page") int pageIndex);
+    Call<Result> getPlanet(@Query("search") String name, @Query("page") int pageIndex);
 
     @GET("planets")
     Call<Result> getPlanetByName(@Query("search") String name);

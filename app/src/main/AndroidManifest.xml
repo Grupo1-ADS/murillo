@@ -12,19 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StarWarsApp">
         <activity
-            android:name=".views.PeopleDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".views.SWMainActivity"
+            android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".views.PeopleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".views.PeopleDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".views.PlanetActivity"
             android:exported="true" />
     </application>
 
