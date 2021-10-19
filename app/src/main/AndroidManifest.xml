@@ -28,6 +28,9 @@
         <activity
             android:name=".views.PlanetActivity"
             android:exported="true" />
+        <activity
+            android:name=".views.FilmActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

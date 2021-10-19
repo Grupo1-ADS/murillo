@@ -11,42 +11,42 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.starwarsapp.R;
-import com.example.starwarsapp.adapters.PlanetAdapter;
-import com.example.starwarsapp.presenters.PlanetPresenter;
-import com.example.starwarsapp.presenters.PlanetPresenterContract;
+import com.example.starwarsapp.adapters.FilmAdapter;
+import com.example.starwarsapp.presenters.FilmPresenter;
+import com.example.starwarsapp.presenters.FilmPresenterContract;
 
-public class PlanetActivity extends AppCompatActivity implements PlanetPresenterContract.view {
+public class FilmActivity extends AppCompatActivity implements FilmPresenterContract.view {
 
-    private PlanetPresenterContract.presenter presenter;
-    private PlanetAdapter adapter;
+    private FilmPresenterContract.presenter presenter;
+    private FilmAdapter adapter;
 
     private RecyclerView recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_planets);
+        setContentView(R.layout.activity_films);
 
-        presenter = new PlanetPresenter(this);
+        presenter = new FilmPresenter(this);
 
         recycler = findViewById(R.id.recyclerPlanets);
-        EditText etPlanetsSearch = findViewById(R.id.etFilmsSearch);
-        Button btnPlanetsSearch = findViewById(R.id.btnFilmsSearch);
+        EditText etFilmsSearch = findViewById(R.id.etFilmsSearch);
+        Button btnFilmsSearch = findViewById(R.id.btnFilmsSearch);
 
         onPrepareRecyclerView(adapter);
-        presenter.getPlanet();
+        presenter.getFilm();
 
-        btnPlanetsSearch.setOnClickListener(new View.OnClickListener(){
+        btnFilmsSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                presenter.getPlanetByName(etPlanetsSearch.getText().toString());
+                presenter.getFilmByTitle(etFilmsSearch.getText().toString());
             }
         });
     }
 
     @Override
     public void onPrepareRecyclerView(RecyclerView.Adapter adapter) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(PlanetActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(FilmActivity.this);
 
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
@@ -59,7 +59,7 @@ public class PlanetActivity extends AppCompatActivity implements PlanetPresenter
 
     @Override
     public Context getContext() {
-        return PlanetActivity.this;
+        return FilmActivity.this;
     }
 
 }

@@ -8,7 +8,7 @@
     android:layout_height="30dp">
 
     <TextView
-        android:id="@+id/tvNamePlanet"
+        android:id="@+id/tvTitleFilm"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"

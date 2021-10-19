@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnPeople = findViewById(R.id.btnPeople);
         Button btnPlanets = findViewById(R.id.btnPlanets);
+        Button btnFilms = findViewById(R.id.btnFilms);
 
         btnPeople.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PlanetActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnFilms.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FilmActivity.class);
                 startActivity(intent);
             }
         });

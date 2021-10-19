@@ -46,7 +46,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.ViewHolder
         //holder.bind(planets.get(position));
         Planet planet = planets.get(position);
 
-        TextView tv = holder.view.findViewById(R.id.tvNamePlanet);
+        TextView tv = holder.view.findViewById(R.id.tvTitleFilm);
         tv.setText(planet.getName());
 
     }
