@@ -11,10 +11,10 @@ import retrofit2.http.Query;
 public interface PlanetService {
 
     @GET("planets")
-    Call<Result> getPlanet(@Query("search") String name, @Query("page") int pageIndex);
+    Call<Result> getPlanets(@Query("search") String name, @Query("page") int pageIndex);
 
     @GET("planets")
-    Call<Result> getPlanetByName(@Query("search") String name);
+    Call<Result> getPlanetsByName(@Query("search") String name);
 
     @GET("planet/{id}")
     Call<Planet> getPlanetById(@Path("id") int id);

@@ -47,7 +47,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
         //holder.bind(peopleList.get(position));
         People people = peoples.get(position);
 
-        TextView tv = holder.view.findViewById(R.id.tvTitleFilm);
+        TextView tv = holder.view.findViewById(R.id.tvNameSpecie);
         tv.setText(people.getName());
 
     }

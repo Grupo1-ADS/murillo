@@ -3,10 +3,10 @@ package com.example.starwarsapp.presenters;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.starwarsapp.adapters.FilmAdapter;
-import com.example.starwarsapp.models.Film;
+import com.example.starwarsapp.adapters.SpecieAdapter;
+import com.example.starwarsapp.models.Specie;
 import com.example.starwarsapp.models.Result;
-import com.example.starwarsapp.services.FilmService;
+import com.example.starwarsapp.services.SpecieService;
 import com.example.starwarsapp.services.RetrofitClient;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -19,44 +19,44 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class FilmPresenter implements FilmPresenterContract.presenter {
+public class SpeciePresenter implements SpeciePresenterContract.presenter {
 
-    private final String TAG = "FilmPresenter";
+    private final String TAG = "SpeciePresenter";
 
     private Retrofit retrofit;
-    private FilmService filmService;
-    private FilmPresenterContract.view view;
+    private SpecieService specieService;
+    private SpeciePresenterContract.view view;
 
-    private List<Film> results;
+    private List<Specie> results;
 
-    public FilmPresenter(FilmPresenterContract.view view){
+    public SpeciePresenter(SpeciePresenterContract.view view){
         this.view = view;
         this.retrofit = RetrofitClient.getInstance();
-        this.filmService = retrofit.create(FilmService.class);
+        this.specieService = retrofit.create(SpecieService.class);
         this.results = new ArrayList<>();
     }
 
     @Override
-    public void getFilm() {
+    public void getSpecies() {
         results.clear();
         if(results.size() == 0) {
-            fetchFilmResults("", 1);
+            fetchSpecieResults("", 1);
         }
-        view.onPrepareRecyclerView(new FilmAdapter(results));
+        view.onPrepareRecyclerView(new SpecieAdapter(results));
     }
 
     @Override
-    public void getFilmByTitle(String title){
+    public void getSpeciesByName(String name){
         results.clear();
-        if(!title.isEmpty()) {
-            fetchFilmResults(title, 1);
+        if(!name.isEmpty()) {
+            fetchSpecieResults(name, 1);
         }
-        view.onPrepareRecyclerView(new FilmAdapter(results));
+        view.onPrepareRecyclerView(new SpecieAdapter(results));
     }
 
-    private void fetchFilmResults(String title, int pageIndex){
+    private void fetchSpecieResults(String name, int pageIndex){
 
-        Call<Result> call = filmService.getFilms(title, pageIndex);
+        Call<Result> call = specieService.getSpecies(name, pageIndex);
         Gson gson = new Gson();
 
         call.enqueue(new Callback<Result>(){
@@ -65,13 +65,13 @@ public class FilmPresenter implements FilmPresenterContract.presenter {
                 if(response.isSuccessful()){
                     if(response.body().getNext() == null){
                         for(JsonObject item: response.body().getResults()){
-                            results.add(gson.fromJson(item, Film.class));
+                            results.add(gson.fromJson(item, Specie.class));
                         }
                     }else{
                         for(JsonObject item: response.body().getResults()){
-                            results.add(gson.fromJson(item, Film.class));
+                            results.add(gson.fromJson(item, Specie.class));
                         }
-                        fetchFilmResults(title, pageIndex + 1);
+                        fetchSpecieResults(name, pageIndex + 1);
                     }
                 }else{
                     Log.e(TAG, "Error: " + response.code());
@@ -87,16 +87,15 @@ public class FilmPresenter implements FilmPresenterContract.presenter {
     }
 
     @Override
-    public void getFilmById(int id) {
+    public void getSpecieById(int id) {
 
+        Call<Specie> call = specieService.getSpecieById(id);
 
-        Call<Film> call = filmService.getFilmById(id);
-
-        call.enqueue(new Callback<Film>(){
+        call.enqueue(new Callback<Specie>(){
             @Override
-            public void onResponse(Call<Film> call, Response<Film> response) {
+            public void onResponse(Call<Specie> call, Response<Specie> response) {
                 if(response.isSuccessful()){
-                    Film film = response.body();
+                    Specie specie = response.body();
                 }else{
                     Log.e(TAG, "Error: " + response.code());
                     Toast.makeText(view.getContext(), "Resource not found", Toast.LENGTH_SHORT).show();
@@ -104,7 +103,7 @@ public class FilmPresenter implements FilmPresenterContract.presenter {
             }
 
             @Override
-            public void onFailure(Call<Film> call, Throwable t) {
+            public void onFailure(Call<Specie> call, Throwable t) {
                 Log.e(TAG, "Error: " + t.getMessage());
             }
         });

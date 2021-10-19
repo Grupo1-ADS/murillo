@@ -11,10 +11,10 @@ import retrofit2.http.Query;
 public interface SpecieService {
 
     @GET("species")
-    Call<Result> getSpecies(@Query("page") int pageIndex);
+    Call<Result> getSpecies(@Query("search") String name, @Query("page") int pageIndex);
 
     @GET("species")
-    Call<Result> getSpecies(@Query("search") String name);
+    Call<Result> getSpeciesByName(@Query("search") String name);
 
     @GET("species/{id}")
     Call<Specie> getSpecieById(@Path("id") int id);

@@ -11,42 +11,42 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.starwarsapp.R;
-import com.example.starwarsapp.adapters.FilmAdapter;
-import com.example.starwarsapp.presenters.FilmPresenter;
-import com.example.starwarsapp.presenters.FilmPresenterContract;
+import com.example.starwarsapp.adapters.SpecieAdapter;
+import com.example.starwarsapp.presenters.SpeciePresenter;
+import com.example.starwarsapp.presenters.SpeciePresenterContract;
 
-public class FilmActivity extends AppCompatActivity implements FilmPresenterContract.view {
+public class SpecieActivity extends AppCompatActivity implements SpeciePresenterContract.view {
 
-    private FilmPresenterContract.presenter presenter;
-    private FilmAdapter adapter;
+    private SpeciePresenterContract.presenter presenter;
+    private SpecieAdapter adapter;
 
     private RecyclerView recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_films);
+        setContentView(R.layout.activity_species);
 
-        presenter = new FilmPresenter(this);
+        presenter = new SpeciePresenter(this);
 
         recycler = findViewById(R.id.recyclerPlanets);
-        EditText etFilmsSearch = findViewById(R.id.tvTitleFilm);
-        Button btnFilmsSearch = findViewById(R.id.btnSpeciesSearch);
+        EditText etSpeciesSearch = findViewById(R.id.tvTitleFilm);
+        Button btnSpeciesSearch = findViewById(R.id.btnSpeciesSearch);
 
         onPrepareRecyclerView(adapter);
-        presenter.getFilm();
+        presenter.getSpecies();
 
-        btnFilmsSearch.setOnClickListener(new View.OnClickListener(){
+        btnSpeciesSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                presenter.getFilmByTitle(etFilmsSearch.getText().toString());
+                presenter.getSpeciesByName(etSpeciesSearch.getText().toString());
             }
         });
     }
 
     @Override
     public void onPrepareRecyclerView(RecyclerView.Adapter adapter) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(FilmActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(SpecieActivity.this);
 
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
@@ -59,7 +59,7 @@ public class FilmActivity extends AppCompatActivity implements FilmPresenterCont
 
     @Override
     public Context getContext() {
-        return FilmActivity.this;
+        return SpecieActivity.this;
     }
 
 }

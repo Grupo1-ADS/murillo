@@ -31,8 +31,8 @@ public class PeopleActivity extends AppCompatActivity implements PeoplePresenter
         presenter = new PeoplePresenter(this);
 
         recycler = findViewById(R.id.recyclerPlanets);
-        EditText editText = findViewById(R.id.etFilmsSearch);
-        Button buttonSearch = findViewById(R.id.btnFilmsSearch);
+        EditText editText = findViewById(R.id.tvTitleFilm);
+        Button buttonSearch = findViewById(R.id.btnSpeciesSearch);
 
         onPrepareRecyclerView(adapter);
         presenter.getPeople();

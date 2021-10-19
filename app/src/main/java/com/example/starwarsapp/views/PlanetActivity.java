@@ -30,8 +30,8 @@ public class PlanetActivity extends AppCompatActivity implements PlanetPresenter
         presenter = new PlanetPresenter(this);
 
         recycler = findViewById(R.id.recyclerPlanets);
-        EditText etPlanetsSearch = findViewById(R.id.etFilmsSearch);
-        Button btnPlanetsSearch = findViewById(R.id.btnFilmsSearch);
+        EditText etPlanetsSearch = findViewById(R.id.tvTitleFilm);
+        Button btnPlanetsSearch = findViewById(R.id.btnSpeciesSearch);
 
         onPrepareRecyclerView(adapter);
         presenter.getPlanet();

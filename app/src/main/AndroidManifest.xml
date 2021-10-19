@@ -31,6 +31,9 @@
         <activity
             android:name=".views.FilmActivity"
             android:exported="true" />
+        <activity
+            android:name=".views.SpecieActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -56,7 +56,7 @@ public class PlanetPresenter implements PlanetPresenterContract.presenter {
 
     private void fetchPlanetResults(String name, int pageIndex){
 
-        Call<Result> call = planetService.getPlanet(name, pageIndex);
+        Call<Result> call = planetService.getPlanets(name, pageIndex);
         Gson gson = new Gson();
 
         call.enqueue(new Callback<Result>(){
