@@ -1,60 +1,63 @@
 package com.example.starwarsapp.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.starwarsapp.R;
-
-import com.example.starwarsapp.models.People;
+import com.example.starwarsapp.databinding.ItemPeopleBinding;
+import com.example.starwarsapp.models.people.People;
+import com.example.starwarsapp.contracts.PeopleContract;
 
 import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder> {
 
     private List<People> peoples;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private View view;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            view = itemView;
-        }
-
-        public View getView(){
-            return view;
-        }
-    }
+    private PeopleContract.OnItemClickListener onItemClickListener;
 
     public PeopleAdapter(List<People> peoples){
         this.peoples = peoples;
     }
 
-    @NonNull
     @Override
-    public PeopleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_people, parent, false);
-        return new ViewHolder(view);
+    public PeopleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemPeopleBinding itemBinding = ItemPeopleBinding.inflate(layoutInflater, parent, false);
+
+        return new ViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.bind(peopleList.get(position));
+    public void onBindViewHolder(ViewHolder holder, int position) {
         People people = peoples.get(position);
-
-        TextView tv = holder.view.findViewById(R.id.tvNameSpecie);
-        tv.setText(people.getName());
-
+        holder.bind(people);
     }
 
     @Override
     public int getItemCount() {
-        return peoples.size();
+        return peoples != null ? peoples.size() : 0;
+    }
+
+    public void setOnItemClickListener(PeopleContract.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private final ItemPeopleBinding binding;
+
+        public ViewHolder(ItemPeopleBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(People people) {
+            binding.setPeople(people);
+            binding.setPeopleItemClick(onItemClickListener);
+            binding.executePendingBindings();
+        }
+
     }
 
 }

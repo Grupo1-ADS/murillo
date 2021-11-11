@@ -4,64 +4,93 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.starwarsapp.EndlessScrollListener;
 import com.example.starwarsapp.R;
 
 import com.example.starwarsapp.adapters.PeopleAdapter;
+import com.example.starwarsapp.models.people.People;
+import com.example.starwarsapp.contracts.PeopleContract;
 import com.example.starwarsapp.presenters.PeoplePresenter;
-import com.example.starwarsapp.presenters.PeoplePresenterContract;
+import com.example.starwarsapp.services.PeopleService;
 
-public class PeopleActivity extends AppCompatActivity implements PeoplePresenterContract.view {
+import java.util.List;
 
-    private PeoplePresenterContract.presenter presenter;
-    private PeopleAdapter adapter;
+public class PeopleActivity extends AppCompatActivity implements PeopleContract.View, PeopleContract.OnItemClickListener {
 
     private RecyclerView recycler;
+    private PeopleAdapter adapter;
+    private PeoplePresenter presenter;
+
+    private RecyclerView.OnScrollListener listener; // VERIFICAR
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people);
 
-        presenter = new PeoplePresenter(this);
+        prepareRecyclerView();
 
-        recycler = findViewById(R.id.recyclerPlanets);
-        EditText editText = findViewById(R.id.tvTitleFilm);
-        Button buttonSearch = findViewById(R.id.btnSpeciesSearch);
+        presenter = new PeoplePresenter(this, new PeopleService());
+        presenter.requestDataFromSWAPI();
 
-        onPrepareRecyclerView(adapter);
-        presenter.getPeople();
-
-        buttonSearch.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                System.out.println("EDIT TEXT" + editText.getText().toString());
-                presenter.getPeopleByName(editText.getText().toString());
-            }
-        });
     }
 
     @Override
-    public void onPrepareRecyclerView(RecyclerView.Adapter adapter) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(PeopleActivity.this);
+    public void prepareRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler = findViewById(R.id.rv_planets);
 
         recycler.setLayoutManager(layoutManager);
-        recycler.setAdapter(adapter);
+        recycler.setHasFixedSize(true);
     }
 
     @Override
-    public void clearRecyclerView() {
-        recycler.setAdapter(null);
+    public void setDataToRecyclerView(List<People> peoples) {
+        this.adapter = new PeopleAdapter(peoples);
+        this.adapter.setOnItemClickListener(this);
+        this.recycler.setAdapter(adapter);
+        //this.adapter.notifyDataSetChanged();
     }
 
     @Override
-    public Context getContext() {
-        return PeopleActivity.this;
+    public void onResponseFailure(Throwable t) {
+        Toast.makeText(this,"Something went wrong..." + t.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onItemClick(People people) {
+        Intent intent = new Intent(getApplicationContext(), PeopleDetailActivity.class);
+        intent.putExtra("people", people);
+
+        startActivity(intent);
+    }
+
+    public EndlessScrollListener onScrollListener(LinearLayoutManager layoutManager, int visibleThreshold, int startPage) {
+        return new EndlessScrollListener(layoutManager, visibleThreshold, startPage) {
+            @Override
+            public void loadMorePeopleItems(int page, int totalItemsCount, RecyclerView view) {
+                //peoplePresenter.getPeople(page);
+            }
+        };
     }
 
 }
